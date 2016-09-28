@@ -1,25 +1,25 @@
 /**
  * Created by jagadesh on 27/09/16.
  */
-var path = require('path');
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  entry: './public/scripts/main.js',
-  output: { path: __dirname, filename: './public/scripts/bundle.js' },
+  entry: path.resolve(__dirname, 'scripts/main.jsx'),
+  output: {
+    filename: './scripts/bundle.js'
+  },
   module: {
     loaders: [
       {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.js[x]?$/,
+        include: path.resolve(__dirname, 'scripts'),
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
+        loader: 'babel-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
   },
 };
